@@ -9,7 +9,7 @@ CREATE TABLE gamers (
     
 INSERT INTO gamers (name, city, age, rating, platform)
 	VALUES      ('Andy', 'Seattle', 21, 9, 'PC'),
-	            ('Dough', 'NY', 36, 11, 'PS'),
+	            ('Dough', 'NY', 36, 22, 'PS'),
 		    ('Joaquin', 'Orlando', 23, 7, 'PS'),
 		    ('Edward', 'Dallas', 17, 3, 'PC'),
 		    ('Tyler', 'Vancouver', 39, 1, 'Xbox'),
@@ -18,17 +18,23 @@ INSERT INTO gamers (name, city, age, rating, platform)
 		    ('Ann', 'Minsk', 35, 6, 'Xbox'),
 		    ('Bob', 'LA', 44, 5, 'Mobile'),
 		    ('Helen', 'Toronto', 25, 8, 'PS'),
-		    ('Alistair', 'Amsterdam', 43, 10, 'Xbox');
+		    ('Alistair', 'Amsterdam', 43, 10, 'Xbox'),
+		    ('Azamat', 'Tashkent', 24, 12, 'PC'),
+		    ('Tanya', 'Kyiv', 18, 15, 'PC'),
+		    ('Chu Hua', 'Beijing',28, 13, 'PC'),
+		    ('Dae', 'Seoul', 26, 14, 'Mobile'),
+		    ('Andrew', 'Adelaide', 21, 16, 'Xbox'),
+		    ('Ishaan', 'Mumbai', 31, 17, 'PC');
     
 SELECT name, city, rating FROM gamers
-WHERE rating >= 700 AND rating <= 2500
+WHERE rating >= 3 AND rating <= 15
 ORDER BY city DESC, name ASC
 
 SELECT AVG(rating), MIN(age), MAX(age) FROM gamers
 WHERE name LIKE 'A%'
 
 SELECT AVG(age) FROM gamers
-WHERE rating < 1000
+WHERE rating < 7
 
 SELECT name FROM gamers
 WHERE city ILIKE '%a%'
