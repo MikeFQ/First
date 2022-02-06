@@ -1,4 +1,3 @@
-
 #This tiny programm counts the rate of natural increase
 
 def rateOfNaturalIncrease (birth_rate: int, death_rate: int, population: int, per_mille = 1000) -> int:
