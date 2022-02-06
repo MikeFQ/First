@@ -1,9 +1,9 @@
 ﻿CREATE TABLE candidates (	
-                 id Serial  PRIMARY KEY,
-                 name varchar(50) NOT NULL,
-                 city varchar(50) NOT NULL,
-                 age int UNIQUE,
-                 rating int UNIQUE
+            id Serial  PRIMARY KEY,
+            name varchar(50) NOT NULL,
+            city varchar(50) NOT NULL,
+            age int UNIQUE,
+            rating int UNIQUE
 )
     
 INSERT INTO candidates (name, city, age, rating)
