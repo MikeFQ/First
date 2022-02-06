@@ -11,5 +11,5 @@ death_rate = int(input('Enter the deathrate\n'))
 population = int(input('Enter the population\n'))
 
 
-print('The Rate Of Natural Increase is', RateOfNaturalIncrease(birth_rate, death_rate, population))
+print('The Rate Of Natural Increase is', rateOfNaturalIncrease(birth_rate, death_rate, population))
 
