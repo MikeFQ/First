@@ -1,12 +1,12 @@
-﻿CREATE TABLE candidates(	
-    id Serial  PRIMARY KEY,
-    name varchar(50) NOT NULL,
-    city varchar(50) NOT NULL,
-    age int UNIQUE,
-    rating int UNIQUE
+﻿CREATE TABLE candidates (	
+                 id Serial  PRIMARY KEY,
+                 name varchar(50) NOT NULL,
+                 city varchar(50) NOT NULL,
+                 age int UNIQUE,
+                 rating int UNIQUE
 )
     
-INSERT INTO candidates(name, city, age, rating)
+INSERT INTO candidates (name, city, age, rating)
 	VALUES  ('Andy', 'Seattle', 41, 1892),
 	        ('Dough', 'NY', 36, 834),
 		('Joaquin', 'Orlando', 33, 2471),
