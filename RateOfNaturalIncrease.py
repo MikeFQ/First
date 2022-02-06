@@ -1,7 +1,7 @@
 
 #This tiny programm counts the rate of natural increase
 
-def RateOfNaturalIncrease (birth_rate, death_rate, population, per_mille = 1000):
+def rateOfNaturalIncrease (birth_rate: int, death_rate: int, population: int, per_mille = 1000) -> int:
     r = ((birth_rate - death_rate) / population) * per_mille
     return r
 
