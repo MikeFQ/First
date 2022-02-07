@@ -70,6 +70,9 @@ INSERT INTO games (game, producer)
 SELECT name, game FROM gamers JOIN games ON gamers.id_games = games.id
 WHERE producer = 'Valve'
 
+SELECT producer FROM games JOIN gamers ON games.id = gamers.id_games
+WHERE name = (SELECT COUNT(name) FROM gamers) > 2 
+
 
 
 
