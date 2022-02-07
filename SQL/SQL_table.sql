@@ -48,8 +48,8 @@ WHERE platform = 'PC'
 
 
 CREATE TABLE games (
-	     id Serial PRIMARY KEY
-	     game VARCHAR(50) UNIQUE
+	     id Serial PRIMARY KEY,
+	     game VARCHAR(50) UNIQUE,
 	     producer VARCHAR(50) NOT NULL
 )
 
