@@ -70,6 +70,9 @@ INSERT INTO games (game, producer)
 SELECT name, game FROM gamers JOIN games ON gamers.id_games = games.id
 WHERE producer = 'Valve'
 
+
+-- Вывести издателей, у которых больше чем 2 игрока в рейтинге:
+
 SELECT producer FROM games JOIN gamers ON games.id = gamers.id_games
 GROUP BY producer
 HAVING COUNT(name) > 2
