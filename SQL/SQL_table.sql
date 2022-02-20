@@ -40,6 +40,9 @@ WHERE name LIKE 'A%'
 SELECT AVG(age) FROM gamers
 WHERE rating < 7
 
+SELECT MAX(rating) FROM gamers
+WHERE platform = 'Xbox' AND platform = 'PS'
+
 SELECT name FROM gamers
 WHERE city ILIKE '%a%'
 
