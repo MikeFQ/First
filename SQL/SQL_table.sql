@@ -41,7 +41,7 @@ SELECT AVG(age) FROM gamers
 WHERE rating < 7
 
 SELECT MAX(rating) FROM gamers
-WHERE platform = 'Xbox' AND platform = 'PS'
+WHERE platform = 'Xbox' OR platform = 'PS'
 
 SELECT name FROM gamers
 WHERE city ILIKE '%a%'
