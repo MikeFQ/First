@@ -80,6 +80,9 @@ HAVING COUNT(name) > 2
 UPDATE gamers SET name = 'Valentine', city = 'Rotterdam', age = 33, id_games = 3
 WHERE id = 11
 
+DELETE FROM games
+WHERE game = 'Call Of Duty'
+
 
 
 
