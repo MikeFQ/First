@@ -77,6 +77,9 @@ SELECT producer FROM games JOIN gamers ON games.id = gamers.id_games
 GROUP BY producer
 HAVING COUNT(name) > 2
 
+UPDATE gamers SET name = 'Valentine', city = 'Rotterdam', age = 33, id_games = 3
+WHERE id = 11
+
 
 
 
