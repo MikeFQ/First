@@ -40,7 +40,7 @@ SELECT
 	CAST(SUM(ta.IncAmount) AS DECIMAL(20,2)) [Last_quarter_turnover]
  FROM
 	main m
-	JOIN dbo._table_op tp (NOLOCK) ON m.merchantID = tp.mrh_id
+	JOIN dbo._table_op tp (NOLOCK) ON m.merchant_ID = tp.mrh_id
 	JOIN dbo._table_ops o (NOLOCK) ON tp.op_id = o.id
 	JOIN dbo._table_head th (NOLOCK) ON o.id = th.OpId
 	JOIN dbo._table_state ts (NOLOCK) ON th.OpId = ts.op_id AND ts.state = 'done'
@@ -57,7 +57,7 @@ SELECT
 	CAST(SUM(ta.IncAmount) AS DECIMAL(20,2)) [Previous_quarter_turnover]
  FROM
 	main m
-	JOIN dbo._table_op tp (NOLOCK) ON m.merchantID = tp.mrh_id
+	JOIN dbo._table_op tp (NOLOCK) ON m.merchant_ID = tp.mrh_id
 	JOIN dbo._table_ops o (NOLOCK) ON tp.op_id = o.id
 	JOIN dbo._table_head th (NOLOCK) ON o.id = th.OpId
 	JOIN dbo._table_state ts (NOLOCK) ON th.OpId = ts.op_id AND ts.state = 'done'
