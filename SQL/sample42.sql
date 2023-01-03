@@ -29,7 +29,7 @@ SELECT DISTINCT
  FROM
 	dbo._table_Shop ts (NOLOCK)
 	JOIN dbo._table_Request tr (NOLOCK) ON tr.mrhId = ts.mrhId
-	JOIN dbo._table_ShopValue tsv (NOLOCK) ON tsv.shopId = ps.id AND tsv.itemId = 11001
+	JOIN dbo._table_ShopValue tsv (NOLOCK) ON tsv.shopId = ts.id AND tsv.itemId = 11001
  WHERE
 	ts.stateLabel = 'Active'
 ),
