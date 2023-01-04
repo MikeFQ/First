@@ -44,7 +44,7 @@ SELECT MAX(rating) FROM gamers
 WHERE platform = 'Xbox' OR platform = 'PS'
 
 SELECT name FROM gamers
-WHERE city ILIKE '%a%'
+WHERE city LIKE '%a%'
 
 SELECT COUNT(name) FROM gamers
 WHERE platform = 'PC'
