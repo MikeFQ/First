@@ -11,12 +11,15 @@ SELECT DISTINCT
 		SELECT COUNT(tbo.opId)
 		FROM dbo._table_ops tbo (NOLOCK)
 		WHERE tmh.merchantId = tbo.mrhId
+		AND DATEDIFF(DAY, tbo.op_Date, SYSDATETIMEOFFSET()) <= 30
 	) [Amount of all operations],  --including success, rejected, canceled etc.
 	
 	(
 		SELECT COUNT(tbo.opId)
 		FROM dbo._table_ops tbo (NOLOCK)
-		WHERE tmh.merchantId = tbo.mrhId AND tbo.op_Status = 'done'
+		WHERE tmh.merchantId = tbo.mrhId 
+		AND tbo.op_Status = 'done'
+		AND DATEDIFF(DAY, tbo.op_Date, SYSDATETIMEOFFSET()) <= 30
 	) [Amount of successful operations]
 	
  FROM
@@ -24,8 +27,7 @@ SELECT DISTINCT
 	JOIN dbo._country_codes cc (NOLOCK) ON tmh.merchant_Country = cc.alpha3
  WHERE
 	tmh.mrh_Status = 'Active'
-	AND tmh.merchant_Country IN ('USA', 'CHN', 'IND', 'DEU', 'CAN', 'GBR', 'JPN')
-	AND DATEDIFF(DAY, tbo.op_Date, SYSDATETIMEOFFSET()) <= 30 
+	AND tmh.merchant_Country IN ('USA', 'CHN', 'IND', 'DEU', 'CAN', 'GBR', 'JPN') 
  GROUP BY
 	cc.country_name
 )
