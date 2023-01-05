@@ -5,7 +5,7 @@ USE TranDB
 ; WITH main AS (
 SELECT DISTINCT
 	cc.country_name [Country],
-	COUNT (tmh.merchantId) [Amount of magazines]
+	COUNT (tmh.merchantId) [Amount of magazines],
 	
 	(
 		SELECT COUNT(tbo.opId)
