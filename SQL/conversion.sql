@@ -18,7 +18,7 @@ SELECT DISTINCT
 		SELECT COUNT(tbo.opId)
 		FROM dbo._table_ops tbo (NOLOCK)
 		WHERE tmh.merchantId = tbo.mrhId 
-		AND tbo.op_Status = 'done'
+		AND tbo.op_State = 'done'
 		AND DATEDIFF(DAY, tbo.op_Date, SYSDATETIMEOFFSET()) <= 30
 	) [Amount of successful operations]
 	
@@ -26,7 +26,7 @@ SELECT DISTINCT
 	dbo._table_mrh tmh (NOLOCK)
 	JOIN dbo._country_codes cc (NOLOCK) ON tmh.merchant_Country = cc.alpha3
  WHERE
-	tmh.mrh_Status = 'Active'
+	tmh.mrh_State = 'Active'
 	AND tmh.merchant_Country IN ('USA', 'CHN', 'IND', 'DEU', 'CAN', 'GBR', 'JPN') 
  GROUP BY
 	cc.country_name
