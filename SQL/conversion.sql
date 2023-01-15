@@ -15,11 +15,11 @@ SELECT DISTINCT
 	) [Amount of all operations],  --including success, rejected, canceled etc.
 	
 	(
-		SELECT COUNT(tbo.opId)
-		FROM dbo._table_ops tbo (NOLOCK)
-		WHERE tmh.merchantId = tbo.mrhId 
-		AND tbo.op_State = 'done'
-		AND DATEDIFF(DAY, tbo.op_Date, SYSDATETIMEOFFSET()) <= 30
+		SELECT COUNT(tbo1.opId)
+		FROM dbo._table_ops tbo1 (NOLOCK)
+		WHERE tmh.merchantId = tbo1.mrhId 
+		AND tbo1.op_State = 'done' --successful operations
+		AND DATEDIFF(DAY, tbo1.op_Date, SYSDATETIMEOFFSET()) <= 30
 	) [Amount of successful operations]
 	
  FROM
