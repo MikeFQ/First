@@ -179,5 +179,5 @@ SELECT
 	AND c.isLandlocked = 1
 	AND ppc.Number_of_Operating_Reactors > 3
  GROUP BY
-  c.region
+	  c.region
 	
