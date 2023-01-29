@@ -17,7 +17,7 @@ CREATE TABLE #countries
 id UNIQUEIDENTIFIER NOT NULL, 
 name VARCHAR(50),
 capital VARCHAR(50),
-area_km2 BIGINT,
+land_area_km2 BIGINT,
 population BIGINT,
 region VARCHAR(50),
 isLandlocked BIT  
