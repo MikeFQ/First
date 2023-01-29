@@ -178,4 +178,6 @@ SELECT
 	e.GDP_per_capita > 10000 
 	AND c.isLandlocked = 1
 	AND ppc.Number_of_Operating_Reactors > 3
+ GROUP BY
+  c.region
 	
