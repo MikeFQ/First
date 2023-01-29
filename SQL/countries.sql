@@ -166,3 +166,16 @@ SELECT
  ORDER BY
 	e.GDP_per_capita DESC
 */
+
+SELECT
+	c.region AS Region,
+	ISNULL(COUNT(c.name), 0) AS Amount_of_countries
+ FROM
+	#countries c
+	LEFT JOIN #economy e ON e.country_id = c.id
+	LEFT JOIN #Nuclear_Power Production_by_Country ppc ON ppc.ID_country = c.id
+ WHERE
+	e.GDP_per_capita > 10000 
+	AND c.isLandlocked = 1
+	AND ppc.Number_of_Operating_Reactors > 3
+	
