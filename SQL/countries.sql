@@ -8,7 +8,7 @@ DROP TABLE #countries
 IF OBJECT_ID ('tempdb..#economy') IS NOT NULL
 DROP TABLE
 
-IF OBJECT_ID ('tempdb..#biggest_companies') IS NOT NULL
+IF OBJECT_ID ('tempdb..#Nuclear_Power Production_by_Country') IS NOT NULL
 DROP TABLE
 
 
