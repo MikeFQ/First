@@ -2,6 +2,9 @@
 The biggest part of the data is taken from https://www.worldometers.info
 */
 
+USE GeographyDB
+GO
+
 IF OBJECT_ID ('tempdb..#countries') IS NOT NULL
 DROP TABLE #countries
 
