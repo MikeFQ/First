@@ -5,14 +5,11 @@ The biggest part of the data is taken from https://www.worldometers.info
 USE GeographyDB
 GO
 
-IF OBJECT_ID ('tempdb..#countries') IS NOT NULL
-DROP TABLE #countries
+DROP TABLE IF EXISTS #countries
 
-IF OBJECT_ID ('tempdb..#economy') IS NOT NULL
-DROP TABLE
+DROP TABLE IF EXISTS #economy
 
-IF OBJECT_ID ('tempdb..#Nuclear_Power Production_by_Country') IS NOT NULL
-DROP TABLE
+DROP TABLE IF EXISTS #Nuclear_Power Production_by_Country
 
 
 CREATE TABLE #countries 
