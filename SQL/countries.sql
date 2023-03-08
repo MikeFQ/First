@@ -14,8 +14,8 @@ DROP TABLE IF EXISTS #Nuclear_Power Production_by_Country
 
 CREATE TABLE #countries 
 (
-id UNIQUEIDENTIFIER NOT NULL, 
-name VARCHAR(50),
+id INT NOT NULL, 
+country_name VARCHAR(50),
 capital VARCHAR(50),
 land_area_km2 BIGINT,
 population BIGINT,
