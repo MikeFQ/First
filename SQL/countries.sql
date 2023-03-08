@@ -25,14 +25,14 @@ isLandlocked BIT
 
 CREATE TABLE #economy
 (
-country_id UNIQUEIDENTIFIER NOT NULL,
+country_id INT NOT NULL,
 GDP_nominal BIGINT,
 GDP_per_capita INT
 )
 
 CREATE TABLE #Nuclear_Power Production_by_Country
 (
-ID_country UNIQUEIDENTIFIER NOT NULL,
+ID_country INT NOT NULL,
 Number_of_Operating_Reactors INT,
 Nuclear_Electricity_Supplied_GWh INT
 )
