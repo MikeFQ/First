@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS #countries
 DROP TABLE IF EXISTS #economy
 
 DROP TABLE IF EXISTS #Nuclear_Power Production_by_Country
+GO
 
 
 CREATE TABLE #countries 
