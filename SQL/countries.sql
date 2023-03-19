@@ -5,43 +5,41 @@ The biggest part of the data is taken from https://www.worldometers.info
 USE GeographyDB
 GO
 
-DROP TABLE IF EXISTS #countries
-
-DROP TABLE IF EXISTS #economy
-
-DROP TABLE IF EXISTS #Nuclear_Power Production_by_Country
+DROP TABLE IF EXISTS countries
+DROP TABLE IF EXISTS economy
+DROP TABLE IF EXISTS Nuclear_Power_Production_by_Country
 GO
 
 
-CREATE TABLE #countries 
+CREATE TABLE countries 
 (
-id INT NOT NULL, 
-country_name VARCHAR(50),
-capital VARCHAR(50),
-land_area_km2 BIGINT,
-population BIGINT,
-region VARCHAR(50),
-isLandlocked BIT  
+id INT PRIMARY KEY NOT NULL, 
+country_name VARCHAR(50) NULL,
+capital VARCHAR(50) NULL,
+land_area_km2 BIGINT NULL,
+population BIGINT NULL,
+region VARCHAR(50) NULL,
+isLandlocked BIT NOT NULL
 )
 
-CREATE TABLE #economy
+CREATE TABLE economy
 (
 country_id INT NOT NULL,
-GDP_nominal BIGINT,
-GDP_per_capita INT
+GDP_nominal BIGINT NULL,
+GDP_per_capita INT NULL
 )
 
-CREATE TABLE #Nuclear_Power Production_by_Country
+CREATE TABLE Nuclear_Power_Production_by_Country
 (
 ID_country INT NOT NULL,
-Number_of_Operating_Reactors INT,
-Nuclear_Electricity_Supplied_GWh INT
+Number_of_Operating_Reactors INT NULL,
+Nuclear_Electricity_Supplied_GWh INT NULL
 )
 
 
 
 
-INSERT INTO #countries
+INSERT INTO countries
 VALUES 
 (1, 'USA', 'Washington', 9147420, 331002651, 'North America', 0),
 (2, 'China', 'Beijing', 9388211, 1453715794, 'Asia', 0),
@@ -67,7 +65,7 @@ VALUES
 (22, 'United Arab Emirates', 'Abu Dhabi', 83600, 10206515, 'Asia', 0),
 (23, 'Israel', 'Jerusalem', 21640, 9016963, 'Asia', 0),
 (24, 'Argentina', 'Buenos Aires', 2736690, 46284599, 'South America', 0),
-(25, 'Indonesia', 'Jakarta', 1811570, 281144851, 'Asia', 0)
+(25, 'Indonesia', 'Jakarta', 1811570, 281144851, 'Asia', 0),
 (26, 'Luxembourg', 'Luxembourg', 2590, 653216, 'Europe', 1),
 (27, 'Italy', 'Rome', 294140, 60234732, 'Europe', 0),
 (28, 'Spain', 'Madrid', 498800, 46801257, 'Europe', 0),
@@ -99,7 +97,7 @@ VALUES
 (54, 'Czechia', 'Prague', 77240, 10760217, 'Europe', 1)
 
 
-INSERT INTO #economy
+INSERT INTO economy
 VALUES
 (1, 19485394000000, 59939),
 (2, 12237700479375, 8612),
@@ -132,7 +130,7 @@ VALUES
 (22, 382575085092, 40325),
 (17, 375745486521, 1969)
 
-INSERT INTO #Nuclear_Power Production_by_Country
+INSERT INTO Nuclear_Power_Production_by_Country
 VALUES
 (1, 96, 789919),
 (2, 50, 344748),
@@ -154,31 +152,31 @@ VALUES
 
 --SELECT * FROM #countries 
 
---SELECT TOP(10) * FROM #countries ORDER BY population DESC
+--SELECT TOP(10) * FROM countries ORDER BY population DESC
 
 /*
 SELECT
 	TOP(25) *
  FROM
-	#countries c
-	LEFT JOIN #economy e ON e.country_id = c.id
+	countries c
+	LEFT JOIN economy e ON e.country_id = c.id
  WHERE
 	c.isLandlocked <> 0 AND e.GDP_per_capita > 25000
  ORDER BY
 	e.GDP_per_capita DESC
 */
 
-SELECT
-	c.region AS Region,
-	ISNULL(COUNT(c.name), 0) AS Amount_of_countries
- FROM
-	#countries c
-	LEFT JOIN #economy e ON e.country_id = c.id
-	LEFT JOIN #Nuclear_Power Production_by_Country ppc ON ppc.ID_country = c.id
- WHERE
-	e.GDP_per_capita > 10000 
-	AND c.isLandlocked = 1
-	AND ppc.Number_of_Operating_Reactors > 3
- GROUP BY
-	c.region
+--SELECT
+--	c.region AS Region,
+--	ISNULL(COUNT(c.name), 0) AS Amount_of_countries
+-- FROM
+--	countries c
+--	LEFT JOIN economy e ON e.country_id = c.id
+--	LEFT JOIN Nuclear_Power_Production_by_Country ppc ON ppc.ID_country = c.id
+-- WHERE
+--	e.GDP_per_capita > 10000 
+--	AND c.isLandlocked = 1
+--	AND ppc.Number_of_Operating_Reactors > 3
+-- GROUP BY
+--	c.region
 	
