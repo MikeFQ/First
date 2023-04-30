@@ -13,13 +13,14 @@ GO
 
 CREATE TABLE countries 
 (
-id INT PRIMARY KEY NOT NULL, 
+id INT NOT NULL, 
 country_name VARCHAR(50) NULL,
 capital VARCHAR(50) NULL,
 land_area_km2 BIGINT NULL,
 population BIGINT NULL,
 region VARCHAR(50) NULL,
-isLandlocked BIT NOT NULL
+isLandlocked BIT NOT NULL,
+CONSTRAINT PK_Country_Id PRIMARY KEY (id)
 )
 
 CREATE TABLE economy
