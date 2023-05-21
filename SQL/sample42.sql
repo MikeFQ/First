@@ -1,6 +1,7 @@
 -- In this query I compare a turnover between two periods(quarters)
 
 USE main_db
+GO
 
 DECLARE @datefrom SMALLDATETIME, @dateto SMALLDATETIME, @dfromprev SMALLDATETIME 
 
