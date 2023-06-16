@@ -1,6 +1,10 @@
 -- counting the conversion in the last 30 days
 
-USE TranDB
+USE TranDB;
+GO
+
+DECLARE @dateto DATETIME = GETDATE();
+DECLARE @datefrom DATETIME = DATEADD(DAY, -30, @dateto);
 
 ; WITH main AS (
 SELECT DISTINCT
@@ -11,7 +15,7 @@ SELECT DISTINCT
 		SELECT COUNT(tbo.opId)
 		FROM dbo._table_ops tbo (NOLOCK)
 		WHERE tmh.merchantId = tbo.mrhId
-		AND DATEDIFF(DAY, tbo.op_Date, SYSDATETIMEOFFSET()) <= 30
+		AND tbo1.op_Date BETWEEN @datefrom AND @dateto
 	) [Amount of all operations],  --including success, rejected, canceled etc.
 	
 	(
@@ -19,7 +23,7 @@ SELECT DISTINCT
 		FROM dbo._table_ops tbo1 (NOLOCK)
 		WHERE tmh.merchantId = tbo1.mrhId 
 		AND tbo1.op_State = 'done' --successful operations
-		AND DATEDIFF(DAY, tbo1.op_Date, SYSDATETIMEOFFSET()) <= 30
+		AND tbo1.op_Date BETWEEN @datefrom AND @dateto
 	) [Amount of successful operations]
 	
  FROM
