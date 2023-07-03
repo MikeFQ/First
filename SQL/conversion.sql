@@ -13,22 +13,22 @@ SELECT DISTINCT
 	
 	(
 		SELECT COUNT(tbo.opId)
-		FROM dbo._table_ops tbo (NOLOCK)
+		FROM dbo._table_ops tbo
 		WHERE tmh.merchantId = tbo.mrhId
 		AND tbo1.op_Date BETWEEN @datefrom AND @dateto
 	) [Amount of all operations],  --including success, rejected, canceled etc.
 	
 	(
 		SELECT COUNT(tbo1.opId)
-		FROM dbo._table_ops tbo1 (NOLOCK)
+		FROM dbo._table_ops tbo1 
 		WHERE tmh.merchantId = tbo1.mrhId 
 		AND tbo1.op_State = 'done' --successful operations
 		AND tbo1.op_Date BETWEEN @datefrom AND @dateto
 	) [Amount of successful operations]
 	
  FROM
-	dbo._table_mrh tmh (NOLOCK)
-	JOIN dbo._country_codes cc (NOLOCK) ON tmh.merchant_Country = cc.alpha3
+	dbo._table_mrh tmh 
+	JOIN dbo._country_codes cc ON tmh.merchant_Country = cc.alpha3
  WHERE
 	tmh.mrh_State = 'Active'
 	AND tmh.merchant_Country IN ('USA', 'CHN', 'IND', 'DEU', 'CAN', 'GBR', 'JPN') 
