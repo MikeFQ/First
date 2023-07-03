@@ -1,6 +1,6 @@
 -- In this query I compare a turnover between two periods(quarters)
 
-USE main_db
+USE main_db;
 GO
 
 DECLARE @datefrom SMALLDATETIME, @dateto SMALLDATETIME, @dfromprev SMALLDATETIME 
@@ -18,8 +18,8 @@ SELECT DISTINCT
 
 	(
 		SELECT CAST(tr.modified AS SMALLDATETIME) 
-		FROM dbo._table_Request tr (NOLOCK)
-		LEFT JOIN dbo._table_Shop tsh (NOLOCK) ON tsh.mrhId = tr.mrhId
+		FROM dbo._table_Request tr 
+		LEFT JOIN dbo._table_Shop tsh ON tsh.mrhId = tr.mrhId
 		WHERE
 		tr.typeLabel = 'activation'
 		AND tsh.Role = 'MerchantJur'
@@ -28,9 +28,9 @@ SELECT DISTINCT
 	)  [Activation_Date]
 
  FROM
-	dbo._table_Shop ts (NOLOCK)
-	JOIN dbo._table_Request tr (NOLOCK) ON tr.mrhId = ts.mrhId
-	JOIN dbo._table_ShopValue tsv (NOLOCK) ON tsv.shopId = ts.id AND tsv.itemId = 11001
+	dbo._table_Shop ts 
+	JOIN dbo._table_Request tr ON tr.mrhId = ts.mrhId
+	JOIN dbo._table_ShopValue tsv ON tsv.shopId = ts.id AND tsv.itemId = 11001
  WHERE
 	ts.stateLabel = 'Active'
 ),
@@ -41,11 +41,11 @@ SELECT
 	CAST(SUM(ta.IncAmount) AS DECIMAL(20,2)) [Last_quarter_turnover]
  FROM
 	main m
-	JOIN dbo._table_op tp (NOLOCK) ON m.merchant_ID = tp.mrh_id
-	JOIN dbo._table_ops o (NOLOCK) ON tp.op_id = o.id
-	JOIN dbo._table_head th (NOLOCK) ON o.id = th.OpId
-	JOIN dbo._table_state ts (NOLOCK) ON th.OpId = ts.op_id AND ts.state = 'done'
-	JOIN dbo._table_Amounts ta (NOLOCK) ON ts.op_id = ta.OpId
+	JOIN dbo._table_op tp ON m.merchant_ID = tp.mrh_id
+	JOIN dbo._table_ops o ON tp.op_id = o.id
+	JOIN dbo._table_head th ON o.id = th.OpId
+	JOIN dbo._table_state ts ON th.OpId = ts.op_id AND ts.state = 'done'
+	JOIN dbo._table_Amounts ta ON ts.op_id = ta.OpId
  WHERE
 	th.LastStateDate BETWEEN @datefrom AND @dateto
  GROUP BY
@@ -58,11 +58,11 @@ SELECT
 	CAST(SUM(ta.IncAmount) AS DECIMAL(20,2)) [Previous_quarter_turnover]
  FROM
 	main m
-	JOIN dbo._table_op tp (NOLOCK) ON m.merchant_ID = tp.mrh_id
-	JOIN dbo._table_ops o (NOLOCK) ON tp.op_id = o.id
-	JOIN dbo._table_head th (NOLOCK) ON o.id = th.OpId
-	JOIN dbo._table_state ts (NOLOCK) ON th.OpId = ts.op_id AND ts.state = 'done'
-	JOIN dbo._table_Amounts ta (NOLOCK) ON ts.op_id = ta.OpId
+	JOIN dbo._table_op tp ON m.merchant_ID = tp.mrh_id
+	JOIN dbo._table_ops o ON tp.op_id = o.id
+	JOIN dbo._table_head th ON o.id = th.OpId
+	JOIN dbo._table_state ts ON th.OpId = ts.op_id AND ts.state = 'done'
+	JOIN dbo._table_Amounts ta ON ts.op_id = ta.OpId
  WHERE
 	th.LastStateDate BETWEEN @dfromprev AND @datefrom
  GROUP BY
