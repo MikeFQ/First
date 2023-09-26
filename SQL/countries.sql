@@ -21,21 +21,29 @@ population BIGINT NULL,
 region VARCHAR(50) NULL,
 isLandlocked BIT NOT NULL,
 CONSTRAINT PK_Country_Id NOT NULL PRIMARY KEY CLUSTERED(id)
-)
+);
 
 CREATE TABLE economy
 (
 country_id INT NOT NULL,
 GDP_nominal BIGINT NULL,
-GDP_per_capita INT NULL
-)
+GDP_per_capita INT NULL,
+CONSTRAINT FK_economy FOREIGN KEY(country_id)
+REFERENCES countries(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
 
 CREATE TABLE Nuclear_Power_Production_by_Country
 (
 ID_country INT NOT NULL,
 Number_of_Operating_Reactors INT NULL,
-Nuclear_Electricity_Supplied_GWh INT NULL
-)
+Nuclear_Electricity_Supplied_GWh INT NULL,
+CONSTRAINT FK_Nuclear_Power_Production_by_Country FOREIGN KEY(ID_country)
+REFERENCES countries(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
 
 
 
@@ -95,7 +103,7 @@ VALUES
 (51, 'Sweden', 'Stockholm', 410340, 10263474, 'Europe', 0),
 (52, 'Belgium', 'Brussels', 30280, 11720509, 'Europe', 0),
 (53, 'Norway', 'Oslo', 365268, 5532235, 'Europe', 0),
-(54, 'Czechia', 'Prague', 77240, 10760217, 'Europe', 1)
+(54, 'Czechia', 'Prague', 77240, 10760217, 'Europe', 1);
 
 
 INSERT INTO economy
@@ -129,7 +137,7 @@ VALUES
 (46, 416835975862, 47261),
 (53, 399488897844, 75428),
 (22, 382575085092, 40325),
-(17, 375745486521, 1969)
+(17, 375745486521, 1969);
 
 INSERT INTO Nuclear_Power_Production_by_Country
 VALUES
@@ -147,13 +155,13 @@ VALUES
 (11, 33, 43099),
 (12, 22, 40374),
 (52, 7, 32793),
-(54, 6, 28372)
+(54, 6, 28372);
 
---UPDATE #countries SET name = 'Türkiye' WHERE id = 14
+--UPDATE #countries SET name = 'Türkiye' WHERE id = 14;
 
---SELECT * FROM #countries 
+--SELECT * FROM #countries;
 
---SELECT TOP(10) * FROM countries ORDER BY population DESC
+--SELECT TOP(10) * FROM countries ORDER BY population DESC;
 
 /*
 SELECT
@@ -164,7 +172,7 @@ SELECT
  WHERE
 	c.isLandlocked <> 0 AND e.GDP_per_capita > 25000
  ORDER BY
-	e.GDP_per_capita DESC
+	e.GDP_per_capita DESC;
 */
 
 --SELECT
@@ -179,5 +187,5 @@ SELECT
 --	AND c.isLandlocked = 1
 --	AND ppc.Number_of_Operating_Reactors > 3
 -- GROUP BY
---	c.region
+--	c.region;
 	
