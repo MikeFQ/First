@@ -1,14 +1,14 @@
 CREATE TABLE gamers (	
-            id Serial  PRIMARY KEY,
+            id Serial PRIMARY KEY,
             name VARCHAR(50) NOT NULL,
             city VARCHAR(50) NOT NULL,
             age INT NOT NULL,
             rating INT UNIQUE,
 	    platform VARCHAR(50) NOT NULL,
-	    id_games INT
+	    id_game INT
 )
     
-INSERT INTO gamers (name, city, age, rating, platform, id_games)
+INSERT INTO gamers (name, city, age, rating, platform, id_game)
         VALUES      ('Andy', 'Seattle', 21, 9, 'PC', 10),
 	            ('Dough', 'NY', 36, 22, 'PS', 5),
 		    ('Joaquin', 'Orlando', 23, 7, 'PS', 2),
@@ -51,36 +51,37 @@ WHERE platform = 'PC'
 
 
 CREATE TABLE games (
-	     id Serial PRIMARY KEY,
+	     id INT,
 	     game VARCHAR(50) UNIQUE,
 	     producer VARCHAR(50) NOT NULL
+       FOREIGN KEY(id) REFERENCES gamers(id_game)
 )
 
-INSERT INTO games (game, producer)
-       VALUES     ('World Of WarCraft', 'Blizzard'),
-                  ('CS:GO', 'Valve'),
-		  ('Dota2', 'Valve'),
-		  ('Call Of Duty', 'Activision'),
-		  ('Dying Light 2', 'Techland'),
-		  ('Watch Dogs Legion', 'Ubisoft'),
-		  ('GTA 6', 'Rockstar'),
-		  ('Apex Legends', 'EA'),
-		  ('Fortnite', 'Epic Games'),
-		  ('PUBG', 'Krafton'),
-		  ('League Of Legends', 'Riot Games'),
-		  ('Path Of Exile', 'Grinding Gear Games');
+INSERT INTO games (id, game, producer)
+       VALUES     (1, 'World Of WarCraft', 'Blizzard'),
+                  (2, 'CS:GO', 'Valve'),
+		  (3, 'Dota2', 'Valve'),
+		  (4, 'Call Of Duty', 'Activision'),
+		  (5, 'Dying Light 2', 'Techland'),
+		  (6, 'Watch Dogs Legion', 'Ubisoft'),
+		  (7, 'GTA 6', 'Rockstar'),
+		  (8, 'Apex Legends', 'EA'),
+		  (9, 'Fortnite', 'Epic Games'),
+		  (10, 'PUBG', 'Krafton'),
+		  (11, 'League Of Legends', 'Riot Games'),
+		  (12, Path Of Exile', 'Grinding Gear Games');
 		  
-SELECT name, game FROM gamers JOIN games ON gamers.id_games = games.id
+SELECT name, game FROM gamers JOIN games ON gamers.id_game = games.id
 WHERE producer = 'Valve'
 
 
 -- Вывести издателей, у которых больше чем 2 игрока в рейтинге:
 
-SELECT producer FROM games JOIN gamers ON games.id = gamers.id_games
+SELECT producer FROM games JOIN gamers ON games.id = gamers.id_game
 GROUP BY producer
 HAVING COUNT(name) > 2
 
-UPDATE gamers SET name = 'Valentine', city = 'Rotterdam', age = 33, id_games = 3
+UPDATE gamers SET name = 'Valentine', city = 'Rotterdam', age = 33, id_game = 3
 WHERE id = 11
 
 DELETE FROM games
