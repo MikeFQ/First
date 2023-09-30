@@ -3,13 +3,13 @@
 USE main_db;
 GO
 
-DECLARE @datefrom SMALLDATETIME, @dateto SMALLDATETIME, @dfromprev SMALLDATETIME 
+DECLARE @datefrom SMALLDATETIME, @dateto SMALLDATETIME, @dfromprev SMALLDATETIME; 
 
-SET @dateto = DATEADD(HOUR, -6, CAST(CAST(GETDATE() AS DATE) AS SMALLDATETIME))
-SET @datefrom = DATEADD(MONTH, -3, @dateto)
-SET @dfromprev = DATEADD(MONTH, -3, @datefrom)
+SET @dateto = DATEADD(HOUR, -6, CAST(CAST(GETDATE() AS DATE) AS SMALLDATETIME));
+SET @datefrom = DATEADD(MONTH, -3, @dateto);
+SET @dfromprev = DATEADD(MONTH, -3, @datefrom);
 
-; WITH main AS (
+WITH main AS (
 SELECT DISTINCT
 	--TOP (100)
 	ts.identifier [Magazine],
@@ -80,4 +80,4 @@ SELECT
 	JOIN lastQuaterTurnover lqt ON lqt.Merchant_ID = main.Merchant_ID
 	JOIN previousQuarterTurnover pqt ON pqt.Merchant_ID = main.Merchant_ID
  WHERE
-	pqt.[Previous_quarter_turnover] > lqt.[Last_quarter_turnover]
+	pqt.[Previous_quarter_turnover] > lqt.[Last_quarter_turnover];
