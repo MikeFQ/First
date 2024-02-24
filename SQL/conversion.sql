@@ -6,7 +6,7 @@ GO
 DECLARE @dateto DATETIME = GETDATE();
 DECLARE @datefrom DATETIME = DATEADD(DAY, -30, @dateto);
 
-; WITH main AS (
+WITH main AS (
 SELECT DISTINCT
 	cc.country_name [Country],
 	COUNT (tmh.merchantId) [Amount of magazines],
